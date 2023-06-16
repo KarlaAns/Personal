@@ -21,14 +21,23 @@ void altas(ListaTareas& lista) {
     std::cout << "Tarea agregada correctamente." << std::endl;
 }
 
+int obtenerOpcionValida(int opcion) {
+    while (!(std::cin >> opcion)) {
+        std::cout << "Ingrese solo numeros, intente nuevamente: ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }   
+    return opcion;
+}
+
 void bajas(ListaTareas& lista) {
     int numero;
-
     std::cout << "Ingrese el numero de la tarea a eliminar: ";
     std::cin >> numero;
-
-    lista.eliminarTarea(numero);
+    //numero=obtenerOpcionValida(numero);
+	lista.eliminarTarea(numero);
     std::cout << "Tarea eliminada correctamente." << std::endl;
+
 }
 
 void mostrar(ListaTareas& lista) {
@@ -132,12 +141,14 @@ void menu(ListaTareas& lista) {
                     altas(lista);
                     break;
                 case 2:
+                	//mostrar(lista);
                     bajas(lista);
-                    break;
+                	break;
                 case 3:
                     mostrar(lista);
                     break;
                 case 4:
+                	mostrar(lista);
                     modificaciones();
                     break;
                 case 5:
